@@ -1,0 +1,1090 @@
+@use "./variables" as *;
+@use "./mixin" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $white;
+  font-family: $Poppins-Regular;
+  background-color: $primary;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background: $yellow;
+  border-radius: 8px;
+}
+aside._left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flexboxA(start, flex-start, column);
+  width: 10%;
+  height: 100%;
+  padding: 0px 15px;
+  background-color: $third;
+  z-index: 9;
+  overflow: auto;
+  ._left_wrapper {
+    position: relative;
+    padding: 15px 0px;
+    width: 100%;
+    ._logo {
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0rem 1.5rem;
+      ._icon {
+        font-size: 5rem;
+      }
+    }
+    .tab {
+      position: relative;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+      border-color: $fifth;
+      padding: 1.5rem 0rem;
+      margin: 1rem 0rem 2rem;
+      ._btn {
+        width: 100%;
+        @include flexboxA(center, center, column);
+        color: $forth;
+        border: 0;
+        border-radius: 8px;
+        height: 100px;
+        gap: 8px;
+        background-color: transparent;
+        font-family: $Poppins-Regular;
+        margin-bottom: 1.5vw;
+        font-size: clamp(1rem, 0.75vw, 1.5rem);
+        cursor: pointer;
+        transition: 0.5s all;
+        border: 1px solid transparent;
+        overflow-wrap: anywhere;
+        &:hover {
+          box-shadow: 2px 5px 8px 0px #00000080;
+          border: 1px solid #282828;
+        }
+        &.active {
+          background-color: $primary;
+          color: $yellow;
+          border-color: $primary;
+          box-shadow: 2px 5px 8px 0px #00000080;
+        }
+        ._icon {
+          font-size: 1.5rem;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    ._logout {
+      position: relative;
+      width: 100%;
+      ._btn {
+        width: 100%;
+        @include flexboxA(center, center, column);
+        color: $forth;
+        border: 0;
+        border-radius: 8px;
+        height: 100px;
+        gap: 8px;
+        background-color: transparent;
+        font-family: $Poppins-Regular;
+        margin-bottom: 1rem;
+        font-size: clamp(1rem, 0.75vw, 1.5rem);
+        cursor: pointer;
+        transition: 0.5s all;
+        border: 1px solid transparent;
+        &:hover {
+          box-shadow: 2px 5px 8px 0px #00000080;
+          border: 1px solid #282828;
+        }
+        &.active {
+          background-color: $primary;
+          color: $yellow;
+          box-shadow: 2px 5px 8px 0px #00000080;
+        }
+        &._danger {
+          color: $danger;
+        }
+        ._icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+header._topbar {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 90%;
+  margin-left: 10%;
+  background-color: $primary;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  min-height: 108px;
+  ._topbar_wrapper {
+    position: relative;
+    width: 100%;
+    @include flexboxB(space-between, center, row);
+    padding: 1.5rem 2rem 1.5rem 2rem;
+    ._heading {
+      position: relative;
+      h1 {
+        font-size: 2.25rem;
+        line-height: 148%;
+        font-family: $Poppins-Bold;
+        margin-bottom: 0.25rem;
+        color: $white;
+      }
+    }
+    ._user {
+      position: relative;
+      @include flexboxB(space-between, flex-start, row);
+      gap: 16px;
+      ._user_img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px;
+      }
+      ._userrole {
+        position: relative;
+        ._username {
+          font-size: 1.25rem;
+          line-height: 148%;
+          font-family: $Poppins-Regular;
+          color: $white;
+        }
+        ._role {
+          font-size: 0.75rem;
+          line-height: 148%;
+          font-family: $Poppins-Regular;
+          color: $black;
+          background-color: $yellow;
+          border-radius: 50px;
+          padding: 4px 16px;
+        }
+      }
+    }
+  }
+}
+main._dashboard {
+  position: relative;
+  width: 90%;
+  margin-left: 10%;
+  padding: 1.5rem 1rem;
+  margin-top: 108px;
+  ._dashboard_wrapper {
+    position: relative;
+    width: 100%;
+    @include flexboxA(space-between, center, row);
+    border-radius: 8px;
+    ._right {
+      position: relative;
+      @include flexboxA(flex-end, flex-start, column);
+      width: 100%;
+      border-radius: 8px;
+      ._content {
+        position: relative;
+        display: none;
+        width: 100%;
+        height: 90%;
+        border-radius: 8px;
+        ._wrapper {
+          position: relative;
+          width: 100%;
+          @include flexboxA(space-between, flex-start, row);
+          ._w_left {
+            position: relative;
+            width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+            ._trending {
+              position: relative;
+              margin-bottom: 1.5rem;
+              ._p_img {
+                width: 100%;
+                height: 500px;
+                border-radius: 12px;
+                border-bottom-left-radius: 0px;
+                object-fit: cover;
+              }
+              ._p_data {
+                position: absolute;
+                top: auto;
+                bottom: 8px;
+                background: #0000004f;
+                padding: 1rem;
+                width: 70%;
+                border-top-right-radius: 8px;
+                ._p_heading {
+                  @include lineclamp(1);
+                  overflow: hidden;
+                  font-size: clamp(1.5rem, 1.5vw, 3rem);
+                  line-height: 148%;
+                  font-family: $PoiretOne-Regular;
+                  margin-bottom: 0.25rem;
+                }
+                ._p_desc {
+                  @include lineclamp(3);
+                  color: $forth;
+                  font-family: $Poppins-LightItalic;
+                  font-size: clamp(0.75rem, 0.75vw, 2rem);
+                  line-height: 148%;
+                  margin-bottom: 1rem;
+                }
+                ._btn {
+                  width: 150px;
+                  height: 38px;
+                  background-color: $yellow;
+                  font-size: 1rem;
+                  color: $black;
+                  border: 0;
+                  border-radius: 4px;
+                  font-family: $Poppins-Medium;
+                  cursor: pointer;
+                }
+              }
+            }
+            // update user css
+            ._updateuser {
+              position: relative;
+              background-color: $third;
+              border-radius: 12px;
+              padding: 1.75rem;
+              margin-bottom: 1.5rem;
+              ._updateuser_inner {
+                position: relative;
+                @include flexboxB(space-between, center, row);
+                width: 100%;
+                padding-bottom: 2rem;
+                ._c_heading {
+                  color: $white;
+                  font-size: 1.75rem;
+                  line-height: 144%;
+                  margin: 0;
+                  font-family: $Poppins-SemiBold;
+                }
+              }
+              ._form {
+                position: relative;
+                width: 100%;
+                form {
+                  position: relative;
+                  width: 100%;
+                }
+                ._form_wrapper {
+                  width: 100%;
+                  @include flexboxA(space-between, flex-start, row);
+                  gap: 1rem;
+                  ._formbox {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                    ._field {
+                      width: 100%;
+                      font-size: 1vw;
+                      color: $white;
+                      font-family: $Poppins-Regular;
+                      background-color: $secondary;
+                      border: 0;
+                      height: 4rem;
+                      padding: 4px 16px;
+                      border-radius: 8px;
+                      outline: none;
+                      transition: 5ms all;
+                      &:focus-visible {
+                        border: 1px solid $yellow;
+                        box-shadow: $bx_shdw;
+                      }
+                    }
+                    ._error {
+                      font-size: 14px;
+                      color: red;
+                      display: none;
+                    }
+                    ._btn {
+                      width: 100%;
+                      height: 74px;
+                      border: 0;
+                      border-radius: 4px;
+                      background-color: $yellow;
+                      color: $primary;
+                      font-size: max(1vw, 1.25rem);
+                      padding: 8px;
+                      font-family: $Poppins-Regular;
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+            // update user css
+          }
+          ._w_right {
+            position: relative;
+            width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+            ._topposts {
+              position: relative;
+              background-color: $third;
+              border-radius: 12px;
+              padding: 1.75rem;
+              margin-bottom: 1.5rem;
+              ._posts_inner {
+                position: relative;
+                @include flexboxB(space-between, center, row);
+                width: 100%;
+                padding-bottom: 2rem;
+                ._p_heading {
+                  color: $white;
+                  font-size: 1.75rem;
+                  line-height: 144%;
+                  margin: 0;
+                  font-family: $Poppins-SemiBold;
+                }
+                ._seemore {
+                  color: $yellow;
+                  font-size: 1rem;
+                  line-height: 144%;
+                  margin: 0;
+                  text-decoration: none;
+                }
+              }
+              ._posts {
+                position: relative;
+                width: 100%;
+                height: 372px;
+                overflow: auto;
+                padding-right: 1rem;
+                ._post {
+                  position: relative;
+                  width: 100%;
+                  @include flexboxB(space-between, center, row);
+                  text-align: left;
+                  gap: 16px;
+                  background-color: $primary;
+                  padding: 12px 32px 12px 12px;
+                  border-radius: 12px;
+                  margin-bottom: 1rem;
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                  ._p_img {
+                    width: 88px;
+                    height: 88px;
+                    border-radius: 12px;
+                    object-fit: cover;
+                    object-position: center;
+                    background-color: $secondary;
+                  }
+                  ._pdetails {
+                    position: relative;
+                    width: 100%;
+                    padding-right: 12px;
+                    ._pheading {
+                      @include lineclamp(1);
+                      font-size: 1.25rem;
+                      line-height: 148%;
+                      font-family: $Poppins-Bold;
+                      margin-bottom: 0.25rem;
+                      color: $white;
+                    }
+                    ._pdesc {
+                      @include lineclamp(2);
+                      font-size: 1rem;
+                      line-height: 148%;
+                      color: $forth;
+                      font-family: $Poppins-LightItalic;
+                      margin-bottom: 0.25rem;
+                    }
+                  }
+                  ._redirection {
+                    background-color: $yellow;
+                    text-align: center;
+                    color: $black;
+                    text-decoration: none;
+                    width: 40px;
+                    height: 32px;
+                    border-radius: 4px;
+                    @include flexboxA(center, center, row);
+                    transition: 0.7s ease;
+                    &:hover {
+                      border-radius: 50px;
+                    }
+                    span {
+                      font-size: 18px;
+                    }
+                  }
+                }
+              }
+            }
+            // categories tab css
+            ._categories {
+              position: relative;
+              background-color: $third;
+              border-radius: 12px;
+              padding: 1.75rem;
+              margin-bottom: 1.5rem;
+              ._categories_inner {
+                position: relative;
+                @include flexboxB(space-between, center, row);
+                width: 100%;
+                padding-bottom: 2rem;
+                ._c_heading {
+                  color: $white;
+                  font-size: 1.75rem;
+                  line-height: 144%;
+                  margin: 0;
+                  font-family: $Poppins-SemiBold;
+                }
+              }
+              ._form {
+                position: relative;
+                width: 100%;
+                form {
+                  position: relative;
+                  width: 100%;
+                }
+                ._form_wrapper {
+                  width: 100%;
+                  @include flexboxA(space-between, flex-start, row);
+                  gap: 1rem;
+                  ._formbox {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                    ._field {
+                      width: 100%;
+                      font-size: 1vw;
+                      color: $white;
+                      font-family: $Poppins-Regular;
+                      background-color: $secondary;
+                      border: 0;
+                      height: 4rem;
+                      padding: 4px 16px;
+                      border-radius: 8px;
+                      outline: none;
+                      transition: 5ms all;
+                      &:focus-visible {
+                        border: 1px solid $yellow;
+                        box-shadow: $bx_shdw;
+                      }
+                    }
+                    ._error {
+                      font-size: 14px;
+                      color: red;
+                      display: none;
+                    }
+                    ._btn {
+                      width: 100%;
+                      height: 74px;
+                      border: 0;
+                      border-radius: 4px;
+                      background-color: $yellow;
+                      color: $primary;
+                      font-size: max(1vw, 1.25rem);
+                      padding: 8px;
+                      font-family: $Poppins-Regular;
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+            // categories tab css
+            // users tab css
+            ._adduser {
+              position: relative;
+              background-color: $third;
+              border-radius: 12px;
+              padding: 1.75rem;
+              margin-bottom: 1.5rem;
+              ._adduser_inner {
+                position: relative;
+                @include flexboxB(space-between, center, row);
+                width: 100%;
+                padding-bottom: 2rem;
+                ._c_heading {
+                  color: $white;
+                  font-size: 1.75rem;
+                  line-height: 144%;
+                  margin: 0;
+                  font-family: $Poppins-SemiBold;
+                }
+              }
+              ._form {
+                position: relative;
+                width: 100%;
+                form {
+                  position: relative;
+                  width: 100%;
+                }
+                ._form_wrapper {
+                  width: 100%;
+                  @include flexboxA(space-between, flex-start, row);
+                  gap: 1rem;
+                  ._formbox {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                    ._field {
+                      width: 100%;
+                      font-size: 1vw;
+                      color: $white;
+                      font-family: $Poppins-Regular;
+                      background-color: $secondary;
+                      border: 0;
+                      height: 4rem;
+                      padding: 4px 16px;
+                      border-radius: 8px;
+                      outline: none;
+                      transition: 5ms all;
+                      &:focus-visible {
+                        border: 1px solid $yellow;
+                        box-shadow: $bx_shdw;
+                      }
+                    }
+                    ._error {
+                      font-size: 14px;
+                      color: red;
+                      display: none;
+                    }
+                    ._btn {
+                      width: 100%;
+                      height: 74px;
+                      border: 0;
+                      border-radius: 4px;
+                      background-color: $yellow;
+                      color: $primary;
+                      font-size: max(1vw, 1.25rem);
+                      padding: 8px;
+                      font-family: $Poppins-Regular;
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+            // users tab css
+          }
+          // categories section code
+          ._categories {
+            position: relative;
+            width: 98%;
+            background-color: $third;
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin: auto;
+            ._categories_inner {
+              position: relative;
+              @include flexboxB(space-between, center, row);
+              width: 100%;
+              padding-bottom: 2rem;
+              ._c_heading {
+                color: $white;
+                font-size: 1.75rem;
+                line-height: 144%;
+                margin: 0;
+                font-family: $Poppins-SemiBold;
+              }
+              ._seemore {
+                color: $yellow;
+                font-size: 1rem;
+                line-height: 144%;
+                margin: 0;
+                text-decoration: none;
+              }
+            }
+            ._c_data {
+              position: relative;
+              width: 100%;
+              ._c_tabs {
+                position: relative;
+                width: 100%;
+                @include flexboxB(flex-start, center, row);
+                list-style: none;
+                gap: 0.5rem;
+                overflow: auto;
+                overflow-y: hidden;
+                padding-bottom: 1.5rem;
+                &::-webkit-scrollbar {
+                  display: none;
+                }
+                ._btn {
+                  border-radius: 25px;
+                  padding: 0.5rem 1.5rem;
+                  background: $third;
+                  color: $forth;
+                  border: 1px solid;
+                  cursor: pointer;
+                  font-size: 1rem;
+                  line-height: 144%;
+                  font-family: $Poppins-Medium;
+                  transition: 0.5s ease-out;
+                  &.active {
+                    background-color: $white;
+                    color: $black;
+                  }
+                }
+              }
+              ._c_content {
+                position: relative;
+                width: 100%;
+                ._posts {
+                  position: relative;
+                  width: 100%;
+                  overflow: auto;
+                  padding-right: 1rem;
+                  ._post {
+                    position: relative;
+                    width: 100%;
+                    @include flexboxB(space-between, center, row);
+                    text-align: left;
+                    gap: 16px;
+                    background-color: $primary;
+                    padding: 12px 32px 12px 12px;
+                    border-radius: 12px;
+                    margin-bottom: 1rem;
+                    &:last-child {
+                      margin-bottom: 0;
+                    }
+                    ._p_img {
+                      width: 88px;
+                      height: 88px;
+                      border-radius: 12px;
+                      object-fit: cover;
+                      object-position: center;
+                      background-color: $secondary;
+                    }
+                    ._pdetails {
+                      position: relative;
+                      width: 100%;
+                      padding-right: 12px;
+                      ._pheading {
+                        @include lineclamp(1);
+                        font-size: 1.25rem;
+                        line-height: 148%;
+                        font-family: $Poppins-Bold;
+                        margin-bottom: 0.25rem;
+                        color: $white;
+                      }
+                      ._pdesc {
+                        @include lineclamp(2);
+                        font-size: 1rem;
+                        line-height: 148%;
+                        color: $forth;
+                        font-family: $Poppins-LightItalic;
+                        margin-bottom: 0.25rem;
+                      }
+                    }
+                    ._redirection {
+                      background-color: $yellow;
+                      text-align: center;
+                      color: $black;
+                      text-decoration: none;
+                      width: 40px;
+                      height: 32px;
+                      border-radius: 4px;
+                      @include flexboxA(center, center, row);
+                      transition: 0.7s ease;
+                      &:hover {
+                        border-radius: 50px;
+                      }
+                      span {
+                        font-size: 18px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // categories section code
+        }
+      }
+    }
+  }
+}
+main {
+  position: relative;
+  ._login {
+    position: relative;
+    padding: 24px;
+    background-color: $primary;
+    ._login_wrapper {
+      position: relative;
+      width: 100%;
+      @include flexboxA(space-between, center, row);
+      height: calc(100vh - 48px);
+      border-radius: 8px;
+      background-color: $third;
+      padding: 12px;
+      ._left {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        ._loginbg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 8px;
+        }
+        ._logo {
+          position: absolute;
+          top: 2.5rem;
+          left: 2.5rem;
+          right: auto;
+          color: $yellow;
+          text-decoration: none;
+          border-radius: 50px;
+          font-size: max(1vw, 1.5rem);
+          line-height: 174%;
+          @include flexboxB(center, center, row);
+          font-family: $PoiretOne-Regular;
+          font-weight: 500;
+          border: 2px solid #66460b;
+          border-radius: 0;
+          padding: 4px 16px;
+          border-style: dashed;
+        }
+        ._website {
+          position: absolute;
+          top: 2.5rem;
+          left: auto;
+          right: 2.5rem;
+          color: $white;
+          background-color: $secondary;
+          text-decoration: none;
+          border-radius: 50px;
+          font-size: 16px;
+          padding: 4px 8px;
+          width: 200px;
+          height: 50px;
+          @include flexboxB(center, center, row);
+          font-family: $Poppins-Regular;
+          gap: 8px;
+          z-index: 3;
+          box-shadow: $bx_shdw;
+          .material-symbols-outlined {
+            font-size: 1rem;
+          }
+        }
+        ._text {
+          position: absolute;
+          top: auto;
+          bottom: 4rem;
+          font-size: 4rem;
+          font-family: $PoiretOne-Regular;
+          left: 0;
+          right: 0;
+          margin: auto;
+          text-align: center;
+          font-weight: 400;
+        }
+      }
+      ._right {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        ._right_wrapper {
+          position: relative;
+          padding: 2.5rem;
+          width: 90%;
+          height: 100%;
+          margin: auto;
+          ._content {
+            position: relative;
+            ._heading {
+              font-size: max(1.25vw, 4rem);
+              line-height: 164%;
+              color: $white;
+              font-family: $PoiretOne-Regular;
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            ._subheading {
+              font-size: max(1rem, 1.24rem);
+              line-height: 124%;
+              color: $white;
+              font-family: $Poppins-Light;
+            }
+            ._loginCta {
+              font-size: max(1rem, 1.24rem);
+              line-height: 124%;
+              color: $yellow;
+              font-family: $Poppins-Light;
+            }
+          }
+          ._form {
+            position: relative;
+            width: 100%;
+            padding-top: 4rem;
+            form {
+              position: relative;
+              width: 100%;
+            }
+            ._form_wrapper {
+              width: 100%;
+              @include flexboxA(space-between, flex-start, row);
+              gap: 1rem;
+              ._formbox {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                ._field {
+                  width: 100%;
+                  font-size: 1vw;
+                  color: $white;
+                  font-family: $Poppins-Regular;
+                  background-color: $secondary;
+                  border: 0;
+                  height: 4rem;
+                  padding: 4px 16px;
+                  border-radius: 8px;
+                  outline: none;
+                  transition: 5ms all;
+                  &:focus-visible {
+                    border: 1px solid $yellow;
+                    box-shadow: $bx_shdw;
+                  }
+                }
+                ._error {
+                  font-size: 14px;
+                  color: red;
+                  display: none;
+                }
+                ._btn {
+                  width: 100%;
+                  height: 74px;
+                  border: 0;
+                  border-radius: 4px;
+                  background-color: $yellow;
+                  color: $primary;
+                  font-size: max(1vw, 1.25rem);
+                  padding: 8px;
+                  font-family: $Poppins-Regular;
+                  cursor: pointer;
+                }
+                &.fname {
+                  width: calc(50% - 1rem);
+                }
+                &.lname {
+                  width: calc(50% - 1rem);
+                }
+              }
+            }
+          }
+          ._copyright {
+            position: absolute;
+            top: auto;
+            left: 0;
+            bottom: 8px;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 124%;
+            color: $white;
+            font-family: $Poppins-Light;
+          }
+        }
+      }
+    }
+  }
+  ._register {
+    position: relative;
+    padding: 24px;
+    background-color: $primary;
+    ._register_wrapper {
+      position: relative;
+      width: 100%;
+      @include flexboxA(space-between, center, row);
+      height: calc(100vh - 48px);
+      border-radius: 8px;
+      background-color: $third;
+      padding: 12px;
+      ._left {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        ._registerbg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 8px;
+        }
+        ._logo {
+          position: absolute;
+          top: 2.5rem;
+          left: 2.5rem;
+          right: auto;
+          color: $yellow;
+          text-decoration: none;
+          border-radius: 50px;
+          font-size: max(1vw, 1.5rem);
+          line-height: 174%;
+          @include flexboxB(center, center, row);
+          font-family: $PoiretOne-Regular;
+          font-weight: 500;
+          border: 2px solid #66460b;
+          border-radius: 0;
+          padding: 4px 16px;
+          border-style: dashed;
+        }
+        ._website {
+          position: absolute;
+          top: 2.5rem;
+          left: auto;
+          right: 2.5rem;
+          color: $white;
+          background-color: $secondary;
+          text-decoration: none;
+          border-radius: 50px;
+          font-size: 16px;
+          padding: 4px 8px;
+          width: 200px;
+          height: 50px;
+          @include flexboxB(center, center, row);
+          font-family: $Poppins-Regular;
+          gap: 8px;
+          z-index: 3;
+          box-shadow: $bx_shdw;
+          .material-symbols-outlined {
+            font-size: 1rem;
+          }
+        }
+        ._text {
+          position: absolute;
+          top: auto;
+          bottom: 4rem;
+          font-size: 4rem;
+          font-family: $PoiretOne-Regular;
+          left: 0;
+          right: 0;
+          margin: auto;
+          text-align: center;
+          font-weight: 400;
+        }
+      }
+      ._right {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        ._right_wrapper {
+          position: relative;
+          padding: 2.5rem;
+          width: 90%;
+          height: 100%;
+          margin: auto;
+          ._content {
+            position: relative;
+            ._heading {
+              font-size: max(1.25vw, 4rem);
+              line-height: 164%;
+              color: $white;
+              font-family: $PoiretOne-Regular;
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            ._subheading {
+              font-size: max(1rem, 1.24rem);
+              line-height: 124%;
+              color: $white;
+              font-family: $Poppins-Light;
+            }
+            ._registerCta {
+              font-size: max(1rem, 1.24rem);
+              line-height: 124%;
+              color: $yellow;
+              font-family: $Poppins-Light;
+            }
+          }
+          ._form {
+            position: relative;
+            width: 100%;
+            padding-top: 4rem;
+            form {
+              position: relative;
+              width: 100%;
+            }
+            ._form_wrapper {
+              width: 100%;
+              @include flexboxA(space-between, flex-start, row);
+              gap: 1rem;
+              ._formbox {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                ._field {
+                  width: 100%;
+                  font-size: 1vw;
+                  color: $white;
+                  font-family: $Poppins-Regular;
+                  background-color: $secondary;
+                  border: 0;
+                  height: 4rem;
+                  padding: 4px 16px;
+                  border-radius: 8px;
+                  outline: none;
+                  transition: 5ms all;
+                  &:focus-visible {
+                    border: 1px solid $yellow;
+                    box-shadow: $bx_shdw;
+                  }
+                }
+                ._error {
+                  font-size: 14px;
+                  color: red;
+                  display: none;
+                }
+                ._btn {
+                  width: 100%;
+                  height: 74px;
+                  border: 0;
+                  border-radius: 4px;
+                  background-color: $yellow;
+                  color: $primary;
+                  font-size: max(1vw, 1.25rem);
+                  padding: 8px;
+                  font-family: $Poppins-Regular;
+                  cursor: pointer;
+                }
+                &.fname {
+                  width: calc(50% - 1rem);
+                }
+                &.lname {
+                  width: calc(50% - 1rem);
+                }
+              }
+            }
+          }
+          ._copyright {
+            position: absolute;
+            top: auto;
+            left: 0;
+            bottom: 8px;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 124%;
+            color: $white;
+            font-family: $Poppins-Light;
+          }
+        }
+      }
+    }
+  }
+}
