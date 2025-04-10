@@ -1,10 +1,14 @@
 import React from 'react';
+import Topbar from '../../components/topbar/Topbar';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Home from '../../components/home/Home';
 
 export const Dashboard = () => {
-    return ( 
+    return (
         <React.Fragment>
-            <h1>Hello Dashboard</h1>
+            <Topbar />
+            <Sidebar />
+            <Home />
         </React.Fragment>
-     );
+    );
 }
- 
